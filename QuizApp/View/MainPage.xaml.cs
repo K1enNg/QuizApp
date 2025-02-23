@@ -18,12 +18,14 @@ namespace QuizApp
             _currentQuestionIndex = 0;
             _score = 0;
 
-            displayQuestion();
+            DisplayQuestion();
         }
 
-        private void displayQuestion()
+        private void DisplayQuestion()
         {
             var question = _questions[_currentQuestionIndex];
+            Console.WriteLine($"Displaying question: {question.Text}");
+            questionLabel.Text = question.Text;
 
             option1RadioButton.Content = question.Options[0];
             option2RadioButton.Content = question.Options[1];
@@ -61,12 +63,12 @@ namespace QuizApp
 
             if (_currentQuestionIndex < _questions.Count)
             {
-                displayQuestion();
+                DisplayQuestion();
             }
             else
             {
                 resultLabel.Text += $" Final Score: {_score}/{_questions.Count}";
-                _currentQuestionIndex = 0; // Reset for a new quiz
+                _currentQuestionIndex = 0;
                 _score = 0;
             }
         }
