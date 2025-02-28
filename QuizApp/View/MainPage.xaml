@@ -10,7 +10,7 @@
             <Label x:Name="questionLabel" 
                    FontSize="24" 
                    FontAttributes="Bold"
-                   TextColor="#FFF "
+                   TextColor="#FFF"
                    HorizontalOptions="Center" />
 
             <StackLayout>
@@ -20,7 +20,7 @@
                 <RadioButton GroupName="answers" Content="Option 4" x:Name="option4RadioButton" />
             </StackLayout>
 
-            <Button Text="Next Question" 
+            <Button Text="Submit" 
                     FontSize="18"
                     BackgroundColor="#4CAF50"
                     TextColor="#fff"
@@ -31,6 +31,12 @@
                    FontSize="16" 
                    TextColor="#E74C3C" 
                    HorizontalOptions="Center" />
+
+            <Label x:Name="correctedAnswerLabel" 
+                   FontSize="16" 
+                   TextColor="#4CAF50"
+                   HorizontalOptions="Center" 
+                   IsVisible="False" />
 
             <Label x:Name="scoreLabel" 
                    FontSize="20" 

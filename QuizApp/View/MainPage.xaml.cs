@@ -24,8 +24,8 @@ namespace QuizApp
         private void DisplayQuestion()
         {
             var question = _questions[_currentQuestionIndex];
-            Console.WriteLine($"Displaying question: {question.Text}");
-            questionLabel.Text = question.Text;
+            Console.WriteLine($"Displaying question: {question.QuestionText}");
+            questionLabel.Text = question.QuestionText;
 
             option1RadioButton.Content = question.Options[0];
             option2RadioButton.Content = question.Options[1];
@@ -38,40 +38,43 @@ namespace QuizApp
         private void OnNextClicked(object sender, EventArgs e)
         {
             var question = _questions[_currentQuestionIndex];
-            var selectedAnswerIndex = -1;
+            int selectedAnswerIndex = -1;
 
-            if (option1RadioButton.IsChecked)
-                selectedAnswerIndex = 0;
-            else if (option2RadioButton.IsChecked)
-                selectedAnswerIndex = 1;
-            else if (option3RadioButton.IsChecked)
-                selectedAnswerIndex = 2;
-            else if (option4RadioButton.IsChecked)
-                selectedAnswerIndex = 3;
+            if (option1RadioButton.IsChecked) selectedAnswerIndex = 0;
+            if (option2RadioButton.IsChecked) selectedAnswerIndex = 1;
+            if (option3RadioButton.IsChecked) selectedAnswerIndex = 2;
+            if (option4RadioButton.IsChecked) selectedAnswerIndex = 3;
 
-            if (selectedAnswerIndex == question.correctAnswerIndex)
+            if (selectedAnswerIndex == question.CorrectAnswerIndex)
             {
                 _score++;
-                resultLabel.Text = "Correct!";
+                resultLabel.Text = "✅ Correct!";
+                resultLabel.TextColor = Colors.Green;
             }
             else
             {
-                resultLabel.Text = "Incorrect!";
+                resultLabel.Text = "❌ Incorrect!";
+                resultLabel.TextColor = Colors.Red;
+
+                correctedAnswerLabel.Text = $"Correct Answer: {question.CorrectAnswer}";
+                correctedAnswerLabel.IsVisible = true;
             }
 
             _currentQuestionIndex++;
 
             if (_currentQuestionIndex < _questions.Count)
             {
-                DisplayQuestion();
+                Task.Delay(2000).ContinueWith(t => MainThread.BeginInvokeOnMainThread(DisplayQuestion));
             }
             else
             {
-                resultLabel.Text += $" Final Score: {_score}/{_questions.Count}";
+                resultLabel.Text += $"\nFinal Score: {_score}/{_questions.Count}";
                 _currentQuestionIndex = 0;
                 _score = 0;
+                Task.Delay(3000).ContinueWith(t => MainThread.BeginInvokeOnMainThread(DisplayQuestion));
             }
         }
+
     }
 
 }
