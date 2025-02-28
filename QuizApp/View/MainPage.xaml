@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="QuizApp.MainPage"
+             BackgroundColor="#000">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+
+            <Label x:Name="questionLabel" 
+                   FontSize="24" 
+                   FontAttributes="Bold"
+                   TextColor="#FFF"
+                   HorizontalOptions="Center" />
+
+            <StackLayout>
+                <RadioButton GroupName="answers" Content="Option 1" x:Name="option1RadioButton" />
+                <RadioButton GroupName="answers" Content="Option 2" x:Name="option2RadioButton" />
+                <RadioButton GroupName="answers" Content="Option 3" x:Name="option3RadioButton" />
+                <RadioButton GroupName="answers" Content="Option 4" x:Name="option4RadioButton" />
+            </StackLayout>
+
+            <Button Text="Submit" 
+                    FontSize="18"
+                    BackgroundColor="#4CAF50"
+                    TextColor="#fff"
+                    CornerRadius="10"
+                    Clicked="OnNextClicked" />
+
+            <Label x:Name="resultLabel" 
+                   FontSize="16" 
+                   TextColor="#E74C3C" 
+                   HorizontalOptions="Center" />
+
+            <Label x:Name="correctedAnswerLabel" 
+                   FontSize="16" 
+                   TextColor="#4CAF50"
+                   HorizontalOptions="Center" 
+                   IsVisible="False" />
+
+            <Label x:Name="scoreLabel" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   TextColor="#333" 
+                   HorizontalOptions="Center" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
