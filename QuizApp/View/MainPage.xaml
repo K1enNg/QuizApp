@@ -10,7 +10,7 @@
             <Label x:Name="questionLabel" 
                    FontSize="24" 
                    FontAttributes="Bold"
-                   TextColor="#FFF"
+                   TextColor="#FFF "
                    HorizontalOptions="Center" />
 
             <StackLayout>
